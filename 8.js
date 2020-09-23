@@ -1,6 +1,16 @@
-let s = 2000000
-  for (let i=0;i<5;i++)
+const t = 2000000;
+const m = 60;
+const base = t / m;
+const mp = 10 / 12;
+ let tt = t;
+ let total = 0;
+
+ for (let i = 0; i < m; i ++) 
  {
-  s = s +(s * 0,1)
+    const payment = base + tt / 100 * mp;
+    tt -= base;
+    total += payment;
  }
-console.log(s)
+ const perepl = total - t;
+
+console.log('Total:', total, 'Overprice:', perepl);
