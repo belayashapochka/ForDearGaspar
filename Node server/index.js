@@ -1,37 +1,11 @@
-const express = require('express')//Подключение экспреса
-const mongoose = require('mongoose')// Entered DB
-const exphbs = require('express-handlebars')entered hbs
+require('dotenv').config();
+const express = require('express');
+const app = express();
 
-const PORT = process.env.PORT || 3000 //Установка локального хоста
+const appModule = require('./app.controller');
 
-const app = express()
-const hbs = exphbs.create(//Use method create administrated template engine
-{
-	defaultLayout: 'main',
-	extname: 'nbs'//change expansion
-})
+appModule(app);
 
-app.engine('hbs',hbs.engine)//rendering,my main boot)
-
-async function start () 
-{
-	try 
-	{
-		await mongoose.connect('',//Connect DB,
-		{
-			useNewUrlParser:true,
-			useFindAndModify:false
-		})
-		app.listen(PORT, ()=>
-		{
-			console.log('Server has been worked')//Запускаем сервер+если он вкл выводим сообщение
-		})
-	}
-	catch(e)
-	{
-		console.log(e)
-	}
-
-}
-start()
-
+app.listen(process.env.PORT, () => {
+  console.log(`Example app listening at http://localhost:${process.env.PORT}`)
+});
